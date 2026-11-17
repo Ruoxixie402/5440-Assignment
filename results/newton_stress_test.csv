@@ -1,0 +1,3 @@
+Backtracking,Status,Accepted steps,Final loss,Total backtrack reductions
+False,singular Hessian,2,5771413.67163612,0
+True,converged,8,20.251182263627015,4
