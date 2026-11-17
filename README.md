@@ -35,7 +35,7 @@ The notebook already includes executed outputs. Alternatively, run `python assig
 
 ## Data-loading convention
 
-The supplied file contains 100 numerical rows with no header. The reference PDF uses `pd.read_csv("marks.txt")`, which treats the first numerical row as a header and leaves **99 observations**. This solution deliberately reproduces that convention. Reading all 100 rows with `header=None` gives a slightly different estimate.
+The supplied file contains 100 numerical rows with no header. The instructor-provided reference notebook uses `pd.read_csv("marks.txt")`, which treats the first numerical row as a header and leaves **99 observations**. This solution deliberately reproduces that convention. Reading all 100 rows with `header=None` gives a slightly different estimate.
 
 The two scores are standardized during optimization. This changes the gradient-descent trajectory but not the unregularized model's optimum. Reported coefficients and histories are converted back to the original units. All custom methods use the same stopping rule in standardized coordinates.
 
@@ -52,3 +52,7 @@ Final summed negative log-likelihood is approximately **20.25118226**, and train
 The contour plots hold the intercept fixed only when evaluating contours; plotted paths project iterates whose intercept also changes.
 
 The PDF and notebook were executed and checked for consistency. The final grade remains the instructor's decision.
+
+## Reference filename
+
+The supplied reference is `logistic-regression.ipynb`, the notebook corresponding to `logistic-regression.pdf` named in the question. Its reported coefficients and accuracy were checked directly. The instructor reference file itself is not republished here.

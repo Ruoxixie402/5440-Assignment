@@ -1,10 +1,10 @@
-"""Assignment 4, Problem 1: executed solution.
-Run from the directory containing marks.txt. Required: numpy, pandas,
-scipy, matplotlib, ipython. No package installation is performed here.
-The PDF-style header convention deliberately retains 99 observations.
+"""Assignment 4, Problem 1: logistic regression.
+Reference example: instructor-provided logistic-regression.ipynb.
+Run from the directory containing marks.txt. Requires numpy, pandas,
+scipy, matplotlib, and ipython. The reference notebook's header-inference
+convention is preserved, leaving 99 observations.
 """
 from IPython.display import display
-
 
 
 # Import libraries
@@ -28,15 +28,13 @@ OUTPUT.mkdir(exist_ok=True)
 # Load and prepare the data
 data_path = Path("marks.txt")
 
-print("Current folder:", Path.cwd())
-print("Data file found:", data_path.exists())
 
 if not data_path.exists():
     raise FileNotFoundError(
-        "Upload marks.txt to the notebook's current folder."
+        "marks.txt must be in the notebook working directory."
     )
 
-# Deliberately matches the reference PDF.
+# Deliberately matches the reference notebook.
 data = pd.read_csv(data_path).to_numpy(dtype=float)
 
 features = data[:, :2]
@@ -480,14 +478,14 @@ tnc_theta, tnc_evaluations, tnc_return_code = fmin_tnc(
     xtol=1e-12
 )
 
-pdf_theta = np.array([
+reference_theta = np.array([
     -24.86874868,
     0.20337210,
     0.19987258
 ])
 
-print("Coefficients printed in the logistic regression PDF:")
-print(pdf_theta)
+print("Coefficients reported in logistic-regression.ipynb:")
+print(reference_theta)
 
 print("\nTighter-tolerance TNC coefficients:")
 print(tnc_theta)
@@ -549,8 +547,8 @@ for name, (method, use_backtracking) in methods.items():
         "Accuracy (%)": (
             100 * np.mean((X @ theta_original >= 0) == y)
         ),
-        "Distance to PDF": np.linalg.norm(
-            theta_original - pdf_theta
+        "Distance to reference": np.linalg.norm(
+            theta_original - reference_theta
         ),
         "Distance to TNC": np.linalg.norm(
             theta_original - tnc_theta
@@ -897,8 +895,4 @@ for name, history in histories.items():
         OUTPUT / filenames[name]
     )
 
-print("Results saved in:", OUTPUT.resolve())
-print()
-
-for file in sorted(OUTPUT.iterdir()):
-    print(file.name)
+print("Comparison tables, parameter histories, and figures saved to results/.")
